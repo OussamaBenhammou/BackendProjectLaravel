@@ -59,25 +59,6 @@ class PostController extends Controller
         return view('posts.edit', compact('post'));
     }
 
-    public function update($id, Request $request)
-    {
-        $post = Post::findOrFail($id);
-
-        if ($post->user_id != Auth::user()->id) {
-            abort(403);
-        }
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-        ]);
-
-        $post = Post::findOrFail($id);
-        $post->title = $request->title;
-        $post->message = $request->content;
-        $post->save();
-
-        return redirect()->route('index')->with('success', 'Post updated successfully');
-    }
 
     public function destroy($id)
     {

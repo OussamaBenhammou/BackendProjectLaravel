@@ -24,6 +24,8 @@ class UserController extends Controller
   public function removeAdmin(User $user)
   {
     $user->is_admin = false;
+    $user->save();
+
     return redirect()->back()->with('success', 'User is no more an admin!');
   }
 }

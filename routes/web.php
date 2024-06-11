@@ -28,6 +28,8 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.
 Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
 Route::get('/posts/edit/{id}', [PostController::class, 'edit'])->name('posts.edit');
 Route::put('/posts/edit/{id}', [PostController::class, 'update'])->name('posts.update');
+Route::post('/like/{postId}', [LikeController::class, 'like'])->name('like');
+
 
 Route::get('like/{postid}', [LikeController::class, 'like'])->name('like');
 Route::get('user/{name}', [UserController::class, 'profile'])->name('profile');
@@ -47,4 +49,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //admin
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::put('/promote/{user}', [UserController::class, 'promote'])->name('promote');
-Route::put('/remove-admin/{user}', 'UserController@removeAdmin')->name('remove.admin');
+Route::put('/remove-admin/{user}', [UserController::class, 'removeAdmin'])->name('remove.admin');

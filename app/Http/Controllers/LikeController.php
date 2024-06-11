@@ -9,27 +9,31 @@ use App\Models\post;
 
 class LikeController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
-        
     }
-     public function like($postId, Request $request){
-            $post = Post::findOrFail($postId);
-            if($post->user_id == Auth::user()-> id){
-            abort(403, 'Cannot like own post');
+    public function like($postId)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'You must be logged in to like a post.');
         }
 
-    $like = Like::where('post_id', '=', $postId)->where('user_id', '=', Auth::user()->id)->first();
-    if($like !=NULL){
-        abort(403, 'Cannot like a post more than once');
+        $post = Post::findOrFail($postId);
+
+        $existingLike = Like::where('post_id', $post->id)
+            ->where('user_id', Auth::user()->id)
+            ->first();
+
+        if ($existingLike) {
+            $existingLike->delete();
+            return redirect()->back()->with('success', 'You unliked the post.');
+        } else {
+            $like = new Like();
+            $like->user_id = Auth::user()->id;
+            $like->post_id = $post->id;
+            $like->save();
+            return redirect()->back()->with('success', 'You liked the post.');
+        }
     }
-
-        $like = new Like;
-        $like->user_id = Auth::user()->id;
-        $like->post_id = $postId;
-        $like->save();
-
-        return redirect()->route('index')->with('status','Post liked' );
-}
-
 }
