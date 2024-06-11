@@ -32,7 +32,10 @@ Route::post('/like/{postId}', [LikeController::class, 'like'])->name('like');
 
 
 Route::get('like/{postid}', [LikeController::class, 'like'])->name('like');
+
 Route::get('user/{name}', [UserController::class, 'profile'])->name('profile');
+Route::put('user/{user}', [UserController::class, 'update'])->name('profile.update');
+
 Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact');
 Route::post('/contact', [ContactController::class, 'sendContactForm'])->name('contact.send');
 Route::get('/faq', [FAQController::class, 'index'])->name('faq');

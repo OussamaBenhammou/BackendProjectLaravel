@@ -26,8 +26,8 @@ return new class extends Migration
 
         $adminUser = new User();
         $adminUser->name = 'Admin';
-        $adminUser->email = 'admin@example.com';
-        $adminUser->password = bcrypt('password'); // Assurez-vous de hasher le mot de passe
+        $adminUser->email = 'admin@ehb.be';
+        $adminUser->password = bcrypt('Password!123');
         $adminUser->is_admin = true;
         $adminUser->save();
     }
