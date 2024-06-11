@@ -35,12 +35,14 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|string|max:100',
             'content' => 'required|string',
+            'image' => 'required|string',
         ]);
 
 
         $post = new Post;
         $post->title = $request->title;
         $post->message = $request->content;
+        $post->image = $request->image;
         $post->user_id = Auth::user()->id;
         $post->save();
 
@@ -51,7 +53,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        if ($post->user_id != Auth::user()->id) {
+        if ($post->user_id != Auth::user()->id && !Auth::user()->isAdmin()) {
             abort(403);
         }
         return view('posts.edit', compact('post'));

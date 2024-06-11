@@ -29,6 +29,13 @@
 
                         <a class="nav-link" href="{{ route('posts.create')}}">New post</a>
                     </li>
+                    @auth
+                    @if(Auth::user()->isAdmin())
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dashboard')}}">Dashboard</a>
+                    </li>
+                    @endif
+                    @endauth
                     <li class="nav-item">
 
                         <a class="nav-link" href="{{ route('contact') }}" style="padding-left: 10px;">Contact</a>

@@ -5,14 +5,19 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ $post->title  }}</div>
+                <div class="card-header"> <h1>{{ $post->title  }}</h1></div>
 
                 <div class="card-body">
+                    @if($post->image)
+                    <img src="{{ $post->image }}" alt="Post Image" style="max-width: 100%; height: auto;">
+                    @endif
+                    <br>
 
-
-
-                    <small>Gepost door <a href="{{ route('profile', $post->user->name) }}"> {{ $post->user->name }}</a> op {{ $post->created_at->format('d/m/y \o\m H:i') }}</small><br>
-                    {{ $post->message}}
+                    <small>Gepost door <a href="{{ route('profile', $post->user->name) }}"> {{ $post->user->name }}</a> op {{ $post->created_at->format('d/m/y \o\m H:i') }}</small>
+                    <br>
+                    <br>
+                    <h4>description:</h4>
+                    <p>{{ $post->message}}</p>
                     <br><br>
                     @auth
                     @if ($post->user_id == Auth::user()->id)

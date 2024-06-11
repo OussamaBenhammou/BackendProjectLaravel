@@ -7,6 +7,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FAQController;
+use App\Http\Controllers\DashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +43,8 @@ Route::post('/faq', [FAQController::class, 'store'])->name('faq.store');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//admin
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::put('/promote/{user}', [UserController::class, 'promote'])->name('promote');
+Route::put('/remove-admin/{user}', 'UserController@removeAdmin')->name('remove.admin');
