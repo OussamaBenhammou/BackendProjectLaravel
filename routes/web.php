@@ -38,6 +38,8 @@ Route::put('user/{user}', [UserController::class, 'update'])->name('profile.upda
 
 Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact');
 Route::post('/contact', [ContactController::class, 'sendContactForm'])->name('contact.send');
+
+Route::get('/faq/dashboard', [FAQController::class, 'faq'])->name('faqDashboard');
 Route::get('/faq', [FAQController::class, 'index'])->name('faq');
 Route::post('/faq', [FAQController::class, 'store'])->name('faq.store');
 

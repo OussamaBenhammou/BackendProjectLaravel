@@ -46,6 +46,11 @@
                         <a class="nav-link" href="{{ route('faq') }}"> FAQ</a>
                     </li>
 
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{{ route('faqDashboard') }}"> faqDashboard</a>
+                    </li>
+
                 </ul>
 
 
