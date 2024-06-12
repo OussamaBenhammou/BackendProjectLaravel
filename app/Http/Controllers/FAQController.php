@@ -41,7 +41,7 @@ class FaqController extends Controller
         $faq->category = $request->category;
         $faq->save();
 
-        return redirect()->route('faq.index')->with('success', 'FAQ added successfully.');
+        return redirect()->route('index')->with('success', 'FAQ added successfully.');
     }
 
     public function edit(Faq $faq)
