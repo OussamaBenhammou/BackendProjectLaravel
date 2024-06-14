@@ -68,3 +68,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## github repository 
 https://github.com/OussamaBenhammou/backendProjectLaravel.git
+
+
+## Sources and References
+
+This project was developed with the assistance of various resources. Notably, we utilized ChatGPT, a language model developed by OpenAI.
